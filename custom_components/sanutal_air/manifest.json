@@ -5,6 +5,6 @@
   "domain": "sanutal_air",
   "iot_class": "local_polling",
   "name": "Sanutal Air",
-  "requirements": ["pySanutalAir>=0.1.3"],
+  "requirements": ["pySanutalAir>=0.1.4"],
   "version": "1.0.0"
 }
