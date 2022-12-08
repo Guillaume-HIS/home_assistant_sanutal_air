@@ -91,6 +91,8 @@ class SanutalAirFan(FanEntity):
     async def async_update(self) -> None:
         """ Get latest data from fan."""
         await self.hass.async_add_executor_job(self._fan.update)
+        self._fan_state = self._fan.state
+        self._fan_speed = self._fan.speed
         self._frost_active = self._fan.frost_active
         self._filter_reset = self._fan.filter_reset
 
