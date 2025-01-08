@@ -1,5 +1,6 @@
 """Platform for fan integration."""
 import logging
+from enum import IntFlag
 
 from homeassistant.components.fan import FanEntityFeature, FanEntity
 
@@ -71,7 +72,7 @@ class SanutalAirFan(FanEntity):
     @property
     def supported_features(self):
         """Return supported features."""
-        return FanEntityFeature.SET_SPEED
+        return FanEntityFeature(FanEntityFeature.SET_SPEED + FanEntityFeature.TURN_ON + FanEntityFeature.TURN_OFF)
 
     @property
     def is_on(self):
@@ -115,9 +116,9 @@ class SanutalAirFan(FanEntity):
     ) -> None:
 
         """Turn on the fan."""
-        await self.hass.async_add_executor_job(self._fan.set_state_on)
         if percentage is None:
-            return
+            percentage = 10
+        await self.hass.async_add_executor_job(self._fan.set_state_on)
         self.async_set_percentage(percentage)
 
     async def async_turn_off(self, **kwargs) -> None:
