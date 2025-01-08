@@ -1,7 +1,7 @@
 """Platform for fan integration."""
 import logging
 
-from homeassistant.components.fan import SUPPORT_SET_SPEED, FanEntity
+from homeassistant.components.fan import FanEntityFeature, FanEntity
 
 from homeassistant.const import ATTR_ENTITY_ID
 import homeassistant.helpers.config_validation as cv
@@ -71,7 +71,7 @@ class SanutalAirFan(FanEntity):
     @property
     def supported_features(self):
         """Return supported features."""
-        return SUPPORT_SET_SPEED
+        return FanEntityFeature.SET_SPEED
 
     @property
     def is_on(self):
